@@ -1,0 +1,6 @@
+{
+  "$comment": "Client.Help.Prefs: whether the player wants typed help in the panel (false: print it as text).",
+  "type": "object",
+  "required": ["panel"],
+  "properties": { "panel": { "type": "boolean" } }
+}

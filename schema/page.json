@@ -1,0 +1,31 @@
+{
+  "$comment": "Client.Help.Page: a help page. Extra fields are allowed.",
+  "type": "object",
+  "required": ["kind"],
+  "properties": {
+    "kind": { "enum": ["index", "category", "topic", "section", "search", "not_found"] },
+    "req": { "type": "integer" },
+    "query": { "type": "string" },
+    "markup": { "enum": ["plain", "pipe"] },
+    "error": { "type": "string" },
+    "categories": { "type": "array", "items": { "type": "object", "required": ["name", "topics"], "properties": { "name": { "type": "string" }, "topics": { "type": "array", "items": { "$ref": "#/$defs/topicRef" } } } } },
+    "category": { "type": "string" },
+    "topics": { "type": "array", "items": { "$ref": "#/$defs/topicRef" } },
+    "topic": {
+      "type": "object", "required": ["key"],
+      "properties": {
+        "key": { "type": "string" }, "category": { "type": "string" }, "summary": { "type": "string" }, "intro": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "links": { "type": "array", "items": { "type": "string" } },
+        "sections": { "type": "array", "items": { "type": "object", "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" }, "syntax": { "type": "array", "items": { "type": "string" } } } } }
+      }
+    },
+    "section": { "type": ["string", "null"] },
+    "hits": { "type": "array", "items": { "$ref": "#/$defs/hit" } },
+    "suggestions": { "type": "array", "items": { "type": "object", "required": ["query"], "properties": { "query": { "type": "string" }, "label": { "type": "string" } } } }
+  },
+  "$defs": {
+    "topicRef": { "type": "object", "required": ["key"], "properties": { "key": { "type": "string" }, "category": { "type": "string" }, "summary": { "type": "string" } } },
+    "hit": { "type": "object", "required": ["query"], "properties": { "query": { "type": "string" }, "key": { "type": "string" }, "category": { "type": "string" }, "section": { "type": ["string", "null"] }, "snippet": { "type": "string" } } }
+  }
+}

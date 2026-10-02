@@ -1,0 +1,6 @@
+{
+  "$comment": "Client.Help.Get and Client.Help.Search: what the client asks for. Answer with the same req.",
+  "type": "object",
+  "required": ["query", "req"],
+  "properties": { "query": { "type": "string" }, "req": { "type": "integer" } }
+}
